@@ -12,10 +12,11 @@ import net.md_5.bungee.api.chat.TextComponent;
 
 public class ActionBarMoney extends JavaPlugin implements Listener {
 
-    private Economy econ =null;
+    private Economy econ = null;
+
     @Override
     public void onEnable() {
-        if (!setupEconomy() ) {
+        if (!setupEconomy()) {
             getLogger().severe(String.format("[%s] - Vaultの経済プラグインが見つかりません! 無効化しています...", getDescription().getName()));
             getServer().getPluginManager().disablePlugin(this);
             return;
@@ -23,8 +24,9 @@ public class ActionBarMoney extends JavaPlugin implements Listener {
 
         this.getServer().getPluginManager().registerEvents(this, this);
 
-        this.getServer().getScheduler().runTaskTimer(this,this::updateAllPlayerMoneyDisplay,0L,20L*3600L);
+        this.getServer().getScheduler().runTaskTimer(this, this::updateAllPlayerMoneyDisplay, 0L, 20L * 3600L);
     }
+
     private boolean setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             return false;
@@ -45,15 +47,12 @@ public class ActionBarMoney extends JavaPlugin implements Listener {
 
     private void displayMoney(Player player) {
         double balance = econ.getBalance(player);
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText("§e現在の所持金"+balance+""+econ.currencyNamePlural()));
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§e現在の所持金" + balance + "" + econ.currencyNamePlural()));
     }
 
     public void updateAllPlayerMoneyDisplay() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             displayMoney(player);
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
+        }
     }
 }
