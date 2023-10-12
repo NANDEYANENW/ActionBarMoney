@@ -48,7 +48,7 @@ public class ActionBarMoney extends JavaPlugin implements Listener {
 
     private void displayMoney(Player player) {
         double balance = econ.getBalance(player);
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§e現在の所持金: §a" + balance + "" + econ.currencyNamePlural()));
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§e現在の所持金: §a" + balance));
     }
 
     public void updateAllPlayerMoneyDisplay() {
