@@ -1,0 +1,6 @@
+name: ActionBarMoney
+version: '${project.version}'
+main: org.hotal.actionbarmoney.ActionBarMoney
+api-version: '1.20'
+load: STARTUP
+depend: [Vault]
