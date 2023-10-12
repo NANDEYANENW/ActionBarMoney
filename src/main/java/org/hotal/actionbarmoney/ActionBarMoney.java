@@ -25,7 +25,7 @@ public class ActionBarMoney extends JavaPlugin implements Listener {
 
         this.getServer().getPluginManager().registerEvents(this, this);
 
-        this.getServer().getScheduler().runTaskTimer(this, this::updateAllPlayerMoneyDisplay, 0L, 20L);
+        this.getServer().getScheduler().runTaskTimer(this, this::updateAllPlayerMoneyDisplay, 0L, 20L * 3600L);
     }
 
     private boolean setupEconomy() {
@@ -46,9 +46,9 @@ public class ActionBarMoney extends JavaPlugin implements Listener {
         displayMoney(player);
     }
 
-    private void displayMoney(Player player) {
+    public void displayMoney(Player player) {
         double balance = econ.getBalance(player);
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§e現在の所持金: §a" + balance));
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§e現在の所持金: §a" + balance + " " + econ.currencyNamePlural()));
     }
 
     public void updateAllPlayerMoneyDisplay() {
