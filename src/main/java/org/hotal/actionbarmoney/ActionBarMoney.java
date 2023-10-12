@@ -1,4 +1,5 @@
 package org.hotal.actionbarmoney;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -47,7 +48,7 @@ public class ActionBarMoney extends JavaPlugin implements Listener {
 
     private void displayMoney(Player player) {
         double balance = econ.getBalance(player);
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§e現在の所持金" + balance + "" + econ.currencyNamePlural()));
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§e現在の所持金: §a" + balance + "" + econ.currencyNamePlural()));
     }
 
     public void updateAllPlayerMoneyDisplay() {
