@@ -48,8 +48,13 @@ public class ActionBarMoney extends JavaPlugin implements Listener {
 
     public void displayMoney(Player player) {
         double balance = econ.getBalance(player);
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§e現在の所持金: §a" + balance + " §f" + econ.currencyNamePlural()));
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("§e現在の所持金: §a" + balance + "§f " + stripColorCodes(econ.currencyNamePlural())));
     }
+
+    private String stripColorCodes(String input) {
+        return input.replaceAll("(§[a-fk-or0-9])", "");
+    }
+
 
     public void updateAllPlayerMoneyDisplay() {
         for (Player player : Bukkit.getOnlinePlayers()) {
