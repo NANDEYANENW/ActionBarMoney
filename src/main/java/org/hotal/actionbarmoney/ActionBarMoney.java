@@ -25,7 +25,7 @@ public class ActionBarMoney extends JavaPlugin implements Listener {
 
         this.getServer().getPluginManager().registerEvents(this, this);
 
-        this.getServer().getScheduler().runTaskTimer(this, this::updateAllPlayerMoneyDisplay, 0L, 20L * 3600L);
+        this.getServer().getScheduler().runTaskTimer(this, this::updateAllPlayerMoneyDisplay, 0L, 20L);
     }
 
     private boolean setupEconomy() {
