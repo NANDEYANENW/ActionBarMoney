@@ -1,4 +1,5 @@
 package org.hotal.actionbarmoney;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.event.EventHandler;
@@ -21,6 +22,8 @@ public class ActionBarMoney extends JavaPlugin implements Listener {
         }
 
         this.getServer().getPluginManager().registerEvents(this, this);
+
+        this.getServer().getScheduler().runTaskTimer(this,this::updateAllPlayerMoneyDisplay,0L,20L*3600L);
     }
     private boolean setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
@@ -44,6 +47,10 @@ public class ActionBarMoney extends JavaPlugin implements Listener {
         double balance = econ.getBalance(player);
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR,TextComponent.fromLegacyText("§e現在の所持金"+balance+""+econ.currencyNamePlural()));
     }
+
+    public void updateAllPlayerMoneyDisplay() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            displayMoney(player);
 
     @Override
     public void onDisable() {
